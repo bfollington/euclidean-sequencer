@@ -21,6 +21,7 @@ function chooseFrom<T>(arr: T[]) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+const volume = new Tone.Volume(-12);
 const delay = new Tone.FeedbackDelay(chooseFrom(noteTypes), 0.25);
 const reverb = new Tone.Reverb({
   decay: 4,
@@ -44,9 +45,10 @@ const synth = new Tone.PolySynth();
 synth.connect(delay);
 synth.connect(reverb);
 delay.connect(reverb);
-synth.toDestination();
-delay.toDestination();
-reverb.toDestination();
+synth.connect(volume);
+delay.connect(volume);
+reverb.connect(volume);
+volume.toDestination();
 
 // Create a sequence
 const sequence = new Tone.Sequence((time, step) => {
