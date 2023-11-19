@@ -15,6 +15,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.controls {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -40,7 +47,6 @@ h1 {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 

@@ -3,10 +3,8 @@ import { start } from "./sequencer";
 import "./scene";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <div class="card">
+  <div class="controls">
       <button id="start" type="button">Start</button>
-    </div>
   </div>
 `;
 
