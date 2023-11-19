@@ -13,7 +13,7 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, renderer.domElement);
+new OrbitControls(camera, renderer.domElement);
 
 // Add ambient light
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -25,10 +25,10 @@ directionalLight.position.set(0, 1, 1);
 scene.add(directionalLight);
 
 // Bounding sphere
-const boundingSphere = new THREE.Mesh(
-  new THREE.SphereGeometry(5, 32, 32),
-  new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
-);
+// const boundingSphere = new THREE.Mesh(
+//   new THREE.SphereGeometry(5, 32, 32),
+//   new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
+// );
 // scene.add(boundingSphere);
 
 camera.position.z = 10;
@@ -48,7 +48,6 @@ const colors = [
 const pentatonicScale = ["C4", "Eb4", "F4", "G4", "Bb4"];
 const pentatonicScaleOct = ["C5", "Eb5", "F5", "G5", "Bb5"];
 const notes = [...pentatonicScale, ...pentatonicScaleOct]; // Example notes
-const gridSize = 3; // Adjust based on your preference
 let orbs: { [note: string]: NoteOrb } = {};
 const initialVelocity = 0.05; // Adjust as needed
 const sphereRadius = 5;
