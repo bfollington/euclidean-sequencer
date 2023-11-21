@@ -4,6 +4,8 @@ const particlePositions: THREE.Vector3[] = [];
 const particleCount = 1000; // Adjust based on desired density
 const particleGeometry = new THREE.SphereGeometry(0.02, 4, 6); // Small spheres
 const particleMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+particleMaterial.emissive = new THREE.Color(0x444444); // Slight glow
+particleMaterial.roughness = 0.7; // Adjust for shininess
 
 const particleMesh = new THREE.InstancedMesh(
   particleGeometry,
@@ -11,8 +13,8 @@ const particleMesh = new THREE.InstancedMesh(
   particleCount
 );
 
-export function addParticles(scene: THREE.Scene) {
-  scene.add(particleMesh);
+export function addParticles(group: THREE.Group) {
+  group.add(particleMesh);
 
   for (let i = 0; i < particleCount; i++) {
     const position = new THREE.Vector3(
