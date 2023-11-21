@@ -82,13 +82,13 @@ export class CylinderCreature {
     geometry.setIndex(indices);
 
     // Material
-    const material = new THREE.MeshPhysicalMaterial({
+    const material = new THREE.MeshStandardMaterial({
       color: color,
-      side: THREE.DoubleSide,
+      // side: THREE.DoubleSide,
     });
-    material.specularIntensity = 0.5;
-    material.clearcoat = 1;
-    material.roughness = 0.5;
+    // material.specularIntensity = 0.5;
+    // material.clearcoat = 1;
+    // material.roughness = 0.5;
 
     // debugger;
 
@@ -102,9 +102,9 @@ export class CylinderCreature {
       const orb = orbs[note];
       if (orb && orb.cube == this.target) {
         // Set the emissive color based on velocity
-        const mat = this.mesh.material as THREE.MeshPhysicalMaterial;
+        const mat = this.mesh.material as THREE.MeshStandardMaterial;
         mat.emissive.setHex(0xff00ff);
-        mat.emissiveIntensity = velocity * 0.4;
+        mat.emissiveIntensity = velocity * 0.8;
 
         // Fade out the emissive color
         // (You might need to implement a more complex fading logic in your animation loop)

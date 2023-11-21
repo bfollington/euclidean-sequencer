@@ -10,8 +10,9 @@ import { addListener } from "./sequencer";
 
 // Basic Three.js setup
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x110022);
 const group = new THREE.Group();
-scene.fog = new THREE.Fog(0x0, 5, 15);
+scene.fog = new THREE.Fog(0x110022, 5, 12);
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -24,30 +25,36 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const composer = new EffectComposer(renderer);
 const renderPass = new RenderPixelatedPass(1, scene, camera);
 composer.addPass(renderPass);
-const afterimagePass = new AfterimagePass(0.96); // Damp value, adjust for effect strength
+const afterimagePass = new AfterimagePass(0.95); // Damp value, adjust for effect strength
 composer.addPass(afterimagePass);
 
 document.body.appendChild(renderer.domElement);
 new OrbitControls(camera, renderer.domElement);
 
 // Add ambient light
-const ambientLight = new THREE.AmbientLight(0x0000ff, 1.5);
+const ambientLight = new THREE.AmbientLight(0xddddff, 2.5);
 group.add(ambientLight);
 
 // Add directional light
-const directionalLight = new THREE.DirectionalLight(0xffdddd, 5);
+const directionalLight = new THREE.DirectionalLight(0xffdddd, 3);
 directionalLight.position.set(5, 5, 5);
+directionalLight.lookAt(0, 0, 0);
 group.add(directionalLight);
 
-const directionalLight2 = new THREE.DirectionalLight(0xddffdd, 5);
+const directionalLight2 = new THREE.DirectionalLight(0xddffdd, 3);
 directionalLight.position.set(-5, -5, -5);
+directionalLight.lookAt(0, 0, 0);
 group.add(directionalLight2);
+
+const spotLight = new THREE.SpotLight(0xddffdd, 2);
+directionalLight.position.set(0, 0, 0);
+group.add(spotLight);
 
 scene.add(group);
 
 const boundingSphere = new THREE.Mesh(
   new THREE.SphereGeometry(5, 16, 16),
-  new THREE.MeshBasicMaterial({ color: 0x333333, wireframe: true })
+  new THREE.MeshBasicMaterial({ color: 0x333355, wireframe: true })
 );
 group.add(boundingSphere);
 
